@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 let score = 0;
 let clickValue = 1; // Base click value
 
@@ -34,7 +33,7 @@ function saveClicks() {
         } else {
             saveStatus.textContent = "Error saving score!";
         }
-        setTimeout(() => saveStatus.textContent = "", 3000);
+        setTimeout(() => saveStatus.textContent = "", 1000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -56,7 +55,7 @@ function displayScore() {
 }
 
 displayScore();
-setInterval(saveClicks, 30000); // Auto-save every 30 seconds
+
 
 // Upgrade click power
 upgrade1.addEventListener('click', () => {
@@ -78,13 +77,7 @@ upgrade2.addEventListener('click', () => {
         scoreDisplay.textContent = score;
     }
 });
-=======
-// Initialiserer score-variabelen
-let score = 0;
 
-// Henter pizza-elementet og score-display-elementet
-const pizza = document.getElementById('pizza');
-const scoreDisplay = document.getElementById('scoreDisplay');
 
 // Legger til en klikk-hendelse for å øke scoren
 pizza.addEventListener('click', () => {
@@ -92,63 +85,11 @@ pizza.addEventListener('click', () => {
     scoreDisplay.textContent = score; // Oppdaterer score på skjermen
 });
 
-// Funksjon for å lagre scoren på serveren
-function saveClicks() {
-    const saveStatus = document.getElementById('saveStatus');
-    saveStatus.textContent = "Saving..."; // Viser melding om lagring
-
-    fetch('/save_pizza', {
-        method: 'POST', // Sender en POST-forespørsel
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ score: score }), // Sender scoren i JSON-format
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                saveStatus.textContent = "Saved the game!"; // Viser suksessmelding
-                setTimeout(() => {
-                    saveStatus.textContent = ""; // Fjerner melding etter 3 sekunder
-                }, 3000);
-            } else {
-                saveStatus.textContent = "Error saving score!"; // Viser feilmelding
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error); // Logger feil
-            saveStatus.textContent = "Error saving score!";
-        });
-}
 
 // Automatisk lagring av scoren hvert 30. sekund
 setInterval(() => {
     saveClicks();
 }, 30000);
 
-// Funksjon for å hente scoren fra serveren ved sideinnlasting
-function displayScore() {
-    fetch('/get_score', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.score !== undefined) {
-                scoreDisplay.textContent = data.score; // Oppdaterer scoren i UI
-                score = parseInt(data.score, 10); // Synkroniserer JavaScript-score med serveren
-            }
-        })
-        .catch(error => console.error('Error fetching score:', error));
-}
 
 
-
-
-function clickme() {
-
-    console.log('hello world')
-}
->>>>>>> Stashed changes

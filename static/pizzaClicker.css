@@ -1,14 +1,10 @@
-<<<<<<< Updated upstream
 
-=======
 /* Stil for overskrifter (h2): Setter skriftstørrelse og farge */
->>>>>>> Stashed changes
 h2 {
     font-size: 32px;
     color: #5e3d0c;
 }
 
-<<<<<<< Updated upstream
 #pizza {
     width: 200px;
     height: 200px;
@@ -70,7 +66,6 @@ h2 {
     left: 40px;
 }
 
-=======
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
 #pizza {
     width: 200px;
@@ -105,7 +100,6 @@ h2 {
 
 
 /* Stil for score-display */
->>>>>>> Stashed changes
 #score {
     font-size: 28px;
     font-weight: bold;
@@ -113,16 +107,13 @@ h2 {
     color: #5e3d0c;
 }
 
-<<<<<<< Updated upstream
-=======
+
 /* Stil for knapper */
->>>>>>> Stashed changes
 button {
     padding: 12px 24px;
     font-size: 18px;
     cursor: pointer;
     background-color: #8b4513;
-<<<<<<< Updated upstream
     color: white;
     border: none;
     border-radius: 8px;
@@ -153,8 +144,7 @@ button:hover {
 .custom-button:active {
     background-color: #003f7f; /* Even darker when clicked */
     transform: scale(0.98); /* Slightly shrinks when clicked */
-}
-=======
+
     /* Brun bakgrunnsfarge */
     color: white;
     /* Hvit tekst */
@@ -173,4 +163,3 @@ button:hover {
     background-color: #381500;
     /* Endrer farge ved hover */
 }
->>>>>>> Stashed changes
