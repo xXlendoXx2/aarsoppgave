@@ -1,0 +1,110 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 10px 20px;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 5px;
+}
+
+.search-bar button {
+    padding: 5px 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    margin: 20px;
+}
+
+aside {
+    width: 20%;
+    padding: 10px;
+    background: #f1f1f1;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside li {
+    margin-bottom: 10px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    width: 80%;
+    padding: 10px;
+}
+
+.game {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    background: #fff;
+}   
+
+.game img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+
+    background: #f8f9fa;
+    padding: 10px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    padding-left: 31rem;
+}
+a {
+    text-decoration: none;  /* Fjerner understrekingen */
+    color: black;           
+}
+
+a:hover {
+    color: darkgray;        /* Endrer farge på lenken når du holder musepekeren over den */
+}
