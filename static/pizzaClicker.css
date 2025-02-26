@@ -16,7 +16,14 @@ h2 {
     position: relative;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-
+#upgrade1 {
+    background-color: red;
+    color: ;
+}
+#upgrade2 {
+    background-color: yellow;
+    color: black;
+}
 #pizza:active {
     transform: scale(0.9);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
