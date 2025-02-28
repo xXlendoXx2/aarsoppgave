@@ -18,7 +18,7 @@ h2 {
 }
 #upgrade1 {
     background-color: red;
-    color: ;
+    color: 0;
 }
 #upgrade2 {
     background-color: yellow;
@@ -27,50 +27,6 @@ h2 {
 #pizza:active {
     transform: scale(0.9);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.chocolate-chip {
-    width: 18px;
-    height: 18px;
-    background-color: #4b2e1f;
-    border-radius: 50%;
-    position: absolute;
-}
-
-/* Chip positions */
-.chip1 {
-    top: 30px;
-    left: 60px;
-}
-
-.chip2 {
-    top: 70px;
-    right: 50px;
-}
-
-.chip3 {
-    bottom: 40px;
-    left: 80px;
-}
-
-.chip4 {
-    top: 100px;
-    left: 110px;
-}
-
-.chip5 {
-    bottom: 30px;
-    right: 60px;
-}
-
-.chip6 {
-    top: 40px;
-    right: 80px;
-}
-
-.chip7 {
-    bottom: 80px;
-    left: 40px;
 }
 
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
@@ -103,9 +59,6 @@ h2 {
     /* Reduserer skyggen ved trykk */
 }
 
-
-
-
 /* Stil for score-display */
 #score {
     font-size: 28px;
@@ -113,7 +66,6 @@ h2 {
     margin: 20px 0;
     color: #5e3d0c;
 }
-
 
 /* Stil for knapper */
 button {
@@ -132,39 +84,9 @@ button:hover {
     background-color: #381500;
 }
 
-.custom-button {
-    background-color: #381500; /* Button color */
-    color: white; /* Text color */
-    border: none; /* Removes default border */
-    border-radius: 5px; /* Rounds the edges */
-    padding: 10px 20px; /* Adds padding */
-    font-size: 16px; /* Adjusts font size */
-    cursor: pointer; /* Changes cursor to pointer on hover */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+.display {
+    padding-left: p;
 }
-
-.custom-button:hover {
-    background-color: #a0522d; /* Darker shade on hover */
-    transform: scale(1.05); /* Slightly enlarges the button */
-}
-
-.custom-button:active {
-    background-color: #003f7f; /* Even darker when clicked */
-    transform: scale(0.98); /* Slightly shrinks when clicked */
-
-    /* Brun bakgrunnsfarge */
-    color: white;
-    /* Hvit tekst */
-    border: none;
-    /* Ingen kantlinje */
-    border-radius: 8px;
-    /* Runde hjørner */
-    margin-top: 20px;
-    /* Plass over knappen */
-    transition: background-color 0.3s;
-    /* Myk overgang ved hover */
-}
-
 /* Hover-effekt for knapper */
 button:hover {
     background-color: #381500;

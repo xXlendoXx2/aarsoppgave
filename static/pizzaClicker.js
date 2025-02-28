@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveStatus = document.getElementById('saveStatus');
     const upgrade1 = document.getElementById('upgrade1');
     const upgrade2 = document.getElementById('upgrade2');
+    const PPS = document.getElementById('PPS')
 
     let upgrade1Cost = 10;
     let upgrade2Cost = 50;
@@ -63,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
             autoClickInterval = setInterval(() => {
                 score += autoClickValue; // Only passive income
                 scoreDisplay.textContent = score;
+                PPS.textContent = `(+${autoClickValue}/sec)`
+
             }, 1000); // Runs every second
         }
     }
@@ -73,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (score >= upgrade1Cost) {
                 score -= upgrade1Cost;
                 autoClickValue += 1; // Only increases passive income
-                upgrade1Cost *= 2;
-                upgrade1.textContent = `Tomato sauce PPS (${autoClickValue}/sec) - Cost: ${upgrade1Cost}`;
+                upgrade1Cost = Math.floor(upgrade1Cost * 1.75);
+                upgrade1.textContent = `Tomato sauce PPS (+1/sec) - Cost: ${upgrade1Cost}`;
                 scoreDisplay.textContent = score;
                 startAutoClick();
             }
@@ -87,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (score >= upgrade2Cost) {
                 score -= upgrade2Cost;
                 autoClickValue += 5; // Again, only for passive income
-                upgrade2Cost *= 2;
-                upgrade2.textContent = `Cheese PPS(${autoClickValue}/sec) - Cost: ${upgrade2Cost}`;
+                upgrade2Cost = Math.floor(upgrade2Cost * 2);
+                upgrade2.textContent = `Cheese PPS(+5/sec) - Cost: ${upgrade2Cost}`;
                 scoreDisplay.textContent = score;
                 startAutoClick();
             }

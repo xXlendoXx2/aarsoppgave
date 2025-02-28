@@ -13,27 +13,27 @@
     <div class="button-container">
         <a href="/home"><button>Tilbake til menyen</button></a>
     </div>
-
-    <!-- Tittel -->
-    <h2>Pizza Clicker Game</h2>
-
-
-    <!-- Viser scoren -->
-    <p>Score: <span id="scoreDisplay">0</span></p>
-
-    <!-- Pizza-element -->
-    <img id="pizza" src="../static/img/pizza3.png" alt="Pizza">
-
-
     <!-- Manual save button -->
 
     <button onclick="saveClicks()">Save Clicks</button>
 
+    
+    
+    <div class="display">
+        <!-- Tittel -->
+        <h2>Pizza Clicker Game</h2>
+    <!-- Viser scoren -->
+    <p>Score: <span id="scoreDisplay">0</span></p>
+    <p>PPS (Pizza per second): <span id="PPS">0</span></p>
+    <!-- Pizza-element -->
+    <img id="pizza" src="../static/img/pizza3.png" alt="Pizza">
+</div>
+
+    
+    <button id="upgrade1">Tomato sauce PPS (+1/sec) - Cost: 10</button>
+    <button id="upgrade2">Cheese PPS (+5/sec) - Cost: 50</button>
     <!-- Feedbackmelding for lagring -->
     <p id="saveStatus"></p>
-
-    <button id="upgrade1">Tomato sauce PPS(+1) - Cost: 10</button>
-    <button id="upgrade2">Cheese PPS(+5) - Cost: 50</button>
     <!-- Lenke til JavaScript-koden -->
     <script src="../static/pizzaClicker.js"></script>
 </body>
