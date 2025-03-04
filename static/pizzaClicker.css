@@ -1,4 +1,7 @@
-
+.buttonsrow{
+    display: flex;
+    gap: 0.25rem;
+}
 /* Stil for overskrifter (h2): Setter skriftstørrelse og farge */
 h2 {
     font-size: 32px;
@@ -69,7 +72,7 @@ h2 {
 
 /* Stil for knapper */
 button {
-    padding: 12px 24px;
+    padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
     background-color: #8b4513;
@@ -84,11 +87,37 @@ button:hover {
     background-color: #381500;
 }
 
-.display {
-    padding-left: p;
-}
 /* Hover-effekt for knapper */
 button:hover {
     background-color: #381500;
     /* Endrer farge ved hover */
+}
+/* Tooltip container */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Position tooltip under button */
+.upgrade-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Show tooltip when hovering over button */
+.upgrade-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 5px;
 }

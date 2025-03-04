@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div class="buttonsrow">
     <!-- Knapp for å gå tilbake til menyen -->
     <div class="button-container">
         <a href="/home"><button>Tilbake til menyen</button></a>
@@ -16,7 +17,7 @@
     <!-- Manual save button -->
 
     <button onclick="saveClicks()">Save Clicks</button>
-
+</div>
     
     
     <div class="display">
@@ -30,8 +31,16 @@
 </div>
 
     
-    <button id="upgrade1">Tomato sauce PPS (+1/sec) - Cost: 10</button>
-    <button id="upgrade2">Cheese PPS (+5/sec) - Cost: 50</button>
+<div class="upgrade-container">
+    <button id="upgrade1">Tomato sauce PPS  </button>
+    <div class="tooltip" id="tooltip1">Cost: 10 | Gives: +1 PPS</div>
+</div>
+
+<div class="upgrade-container">
+    <button id="upgrade2">Cheese PPS</button>
+    <div class="tooltip" id="tooltip2">Cost: 50 | Gives: +5 PPS</div>
+</div>
+
     <!-- Feedbackmelding for lagring -->
     <p id="saveStatus"></p>
     <!-- Lenke til JavaScript-koden -->

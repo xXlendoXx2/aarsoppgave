@@ -71,35 +71,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Upgrade 1: Adds to auto-clicking, not manual clicking
+    function updateTooltips() {
+        document.getElementById('tooltip1').textContent = `Cost: ${upgrade1Cost} | Gives: +1 PPS`;
+        document.getElementById('tooltip2').textContent = `Cost: ${upgrade2Cost} | Gives: +5 PPS`;
+    }
+    
     if (upgrade1) {
         upgrade1.addEventListener('click', () => {
             if (score >= upgrade1Cost) {
                 score -= upgrade1Cost;
-                autoClickValue += 1; // Only increases passive income
+                autoClickValue += 1;
                 upgrade1Cost = Math.floor(upgrade1Cost * 1.75);
-                upgrade1.textContent = `Tomato sauce PPS (+1/sec) - Cost: ${upgrade1Cost}`;
                 scoreDisplay.textContent = score;
+                updateTooltips(); // Update tooltip
                 startAutoClick();
             }
         });
     }
-
-    // Upgrade 2: Increases auto-click speed even more
+    
     if (upgrade2) {
         upgrade2.addEventListener('click', () => {
             if (score >= upgrade2Cost) {
                 score -= upgrade2Cost;
-                autoClickValue += 5; // Again, only for passive income
+                autoClickValue += 5;
                 upgrade2Cost = Math.floor(upgrade2Cost * 2);
-                upgrade2.textContent = `Cheese PPS(+5/sec) - Cost: ${upgrade2Cost}`;
                 scoreDisplay.textContent = score;
+                updateTooltips(); // Update tooltip
                 startAutoClick();
             }
         });
     }
+    
+    // Initialize tooltips on page load
+    updateTooltips();
+    
 
     displayScore();
 
-    // Automatic saving every 30 seconds
-    setInterval(saveClicks, 30000);
+    // Automatic saving every 10 seconds
+    setInterval(saveClicks, 10000);
 });
