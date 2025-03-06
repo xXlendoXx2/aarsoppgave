@@ -27,6 +27,14 @@ h2 {
     background-color: yellow;
     color: black;
 }
+#upgrade3 {
+    background-color: rgb(218, 8, 8);
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3%;
+}
 #pizza:active {
     transform: scale(0.9);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -79,8 +87,8 @@ button {
     color: white;
     border: none;
     border-radius: 8px;
-    margin-top: 20px;
     transition: background-color 0.3s;
+    margin-bottom: 0.4%;
 }
 
 button:hover {

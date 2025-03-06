@@ -1,50 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizza Clicker Game</title>
-    <link rel="stylesheet" href="../static/pizzaClicker.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pizza Clicker Game</title>
+        <link rel="stylesheet" href="../static/pizzaClicker.css">
+    </head>
 
-<body>
-    <div class="buttonsrow">
-    <!-- Knapp for å gå tilbake til menyen -->
-    <div class="button-container">
-        <a href="/home"><button>Tilbake til menyen</button></a>
-    </div>
-    <!-- Manual save button -->
+    <body>
+        <div class="buttonsrow">
+            <!-- Knapp for å gå tilbake til menyen -->
+            <div class="button-container">
+                <a href="/home"><button>Tilbake til menyen</button></a>
+            </div>
+            <!-- Manual save button -->
 
-    <button onclick="saveClicks()">Save Clicks</button>
-</div>
-    
-    
-    <div class="display">
-        <!-- Tittel -->
-        <h2>Pizza Clicker Game</h2>
-    <!-- Viser scoren -->
-    <p>Score: <span id="scoreDisplay">0</span></p>
-    <p>PPS (Pizza per second): <span id="PPS">0</span></p>
-    <!-- Pizza-element -->
-    <img id="pizza" src="../static/img/pizza3.png" alt="Pizza">
-</div>
+        </div>
 
-    
-<div class="upgrade-container">
-    <button id="upgrade1">Tomato sauce PPS  </button>
-    <div class="tooltip" id="tooltip1">Cost: 10 | Gives: +1 PPS</div>
-</div>
+        <div class="display">
+            <!-- Tittel -->
+            <h2>Pizza Clicker Game</h2>
+            <!-- Viser scoren -->
+            <p>Score: <span id="scoreDisplay">0</span></p>
+            <p>PPS (Pizza per second): <span id="PPS">0</span></p>
 
-<div class="upgrade-container">
-    <button id="upgrade2">Cheese PPS</button>
-    <div class="tooltip" id="tooltip2">Cost: 50 | Gives: +5 PPS</div>
-</div>
+            <img id="pizza" src="../static/img/pizza3.png" alt="Pizza">
 
-    <!-- Feedbackmelding for lagring -->
-    <p id="saveStatus"></p>
-    <!-- Lenke til JavaScript-koden -->
-    <script src="../static/pizzaClicker.js"></script>
-</body>
+            <button onclick="saveClicks()">Save Clicks</button>
+            <!-- Pizza-element --><div class="flex">
+
+                <div class="upgrade-container">
+                    <button id="upgrade1">Tomato sauce PPS </button>
+                    <div class="tooltip" id="tooltip1">Cost: 10 | Gives: +1
+                        PPS</div>
+                </div>
+
+                <div class="upgrade-container">
+                    <button id="upgrade2">Cheese PPS</button>
+                    <div class="tooltip" id="tooltip2">Cost: 50 | Gives: +3
+                        PPS</div>
+                </div>
+
+                <div class="upgrade-container">
+                    <button id="upgrade3">Pepperoni PPS </button>
+                    <div class="tooltip" id="tooltip3">Cost: 100 | Gives: +5
+                        PPS</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="upgrade-container ppc-button">
+            <button id="PPC1">Pizza Worker PPC</button>
+            <div class="tooltip" id="tooltip4">Cost: 300 | Gives: +1 PPC</div>
+        </div>
+        <div class="upgrade-container ppc-button">
+            <button id="PPC2">Pizza Worker 2 PPC</button>
+            <div class="tooltip" id="tooltip4">Cost: 3000 | Gives: +2 PPC</div>
+        </div>
+        
+
+        <!-- Feedbackmelding for lagring -->
+        <p id="saveStatus"></p>
+        <!-- Lenke til JavaScript-koden -->
+        <script src="../static/pizzaClicker.js"></script>
+    </body>
 
 </html>
