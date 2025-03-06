@@ -129,3 +129,31 @@ button:hover {
     transform: translateX(-50%);
     margin-top: 5px;
 }
+.popup {
+    display: none;
+    position: fixed;
+    top: 80%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #8b4513;
+    /* ^--Red background color with some transparency */
+    color: white;
+    border-radius: 10px;
+    z-index: 1000;
+    /* ^--Ensure it appears above other elements */
+    font-size: 24px;
+}
+
+/* Animation for the popup */
+@keyframes fadeInOut {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}

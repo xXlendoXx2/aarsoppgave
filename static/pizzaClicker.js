@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const upgrade1 = document.getElementById('upgrade1');
     const upgrade2 = document.getElementById('upgrade2');
     const upgrade3 = document.getElementById('upgrade3');
-    const upgrade4 = document.getElementById('PPC1');
-    const upgrade5 = document.getElementById('PPC2');
-    const PPS = document.getElementById('PPS')
+    const upgrade4 = document.getElementById('PHC1');
+    const upgrade5 = document.getElementById('PHC2');
+    const PHS = document.getElementById('PHS')
 
     let upgrade1Cost = 10;
     let upgrade2Cost = 50;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to save clicks to the server
     function saveClicks() {
-        saveStatus.textContent = "Saving...";
+        saveStatus.textContent = "Lagrer...";
 
         fetch('/save_pizza', {
             method: 'POST',
@@ -42,12 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(response => response.json())
             .then(data => {
-                saveStatus.textContent = data.success ? "Saved the game!" : "Error saving score!";
+                saveStatus.textContent = data.success ? "Lagret dataen din!" : "Feilet med å lagre dataen din!";
                 setTimeout(() => saveStatus.textContent = "", 1000);
             })
             .catch(error => {
                 console.error('Error:', error);
-                saveStatus.textContent = "Error saving score!";
+                saveStatus.textContent = "Feilet med å lagre dataen din!";
             });
     }
 
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     scoreDisplay.textContent = score;
                 }
             })
-            .catch(error => console.error('Error fetching score:', error));
+            .catch(error => console.error('Error for å få lagret data:', error));
     }
 
     // Start auto-clicking (passive income)
@@ -70,22 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
             autoClickInterval = setInterval(() => {
                 score += autoClickValue; // Only passive income
                 scoreDisplay.textContent = score;
-                PPS.textContent = `(+${autoClickValue}/sec)`
-
-            }, 1000); // Runs every second
+                PHS.textContent = `(+${autoClickValue}/sek)`
+            }, 1000)  // Runs every second
         }
     }
 
     // Upgrade 1: Adds to auto-clicking, not manual clicking
     function updateTooltips() {
-        document.getElementById('tooltip1').textContent = `Cost: ${upgrade1Cost} | Gives: +1 PPS`;
-        document.getElementById('tooltip2').textContent = `Cost: ${upgrade2Cost} | Gives: +2 PPS`;
-        document.getElementById('tooltip3').textContent = `Cost: ${upgrade3Cost} | Gives: +5 PPS`;
-        document.getElementById('tooltip4').textContent = `Cost: ${upgrade4Cost} | Gives: +1 PPC`;
-        document.getElementById('tooltip5').textContent = `Cost: ${upgrade5Cost} | Gives: +1 PPC`;
+        document.getElementById('tooltip1').textContent = `Koster: ${upgrade1Cost} | Gir: +1 PHS`;
+        document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +2 PHS`;
+        document.getElementById('tooltip3').textContent = `Koster: ${upgrade3Cost} | Gir: +5 PHS`;
+        document.getElementById('tooltip4').textContent = `Koster: ${upgrade4Cost} | Gir: +1 PHC`;
+        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: +2 PHC`;
 
     }
-
+/* Har tenkt til å legge til slik at oppgraderingene blir bedre hvis man kjøper de 10 ganger osv.*/
     if (upgrade1) {
         upgrade1.addEventListener('click', () => {
             if (score >= upgrade1Cost) {
@@ -95,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 scoreDisplay.textContent = score;
                 updateTooltips(); // Update tooltip
                 startAutoClick();
+            }
+            else {
+                showNoPizzaPopup(); // Viser en popup-melding
             }
         });
     }
@@ -109,6 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltips(); // Update tooltip
                 startAutoClick();
             }
+            else {
+                showNoPizzaPopup(); // Viser en popup-melding
+            }
         });
     }
 
@@ -121,9 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 scoreDisplay.textContent = score;
                 updateTooltips(); // Update tooltip
                 startAutoClick();
+            } else { 
+                showNoPizzaPopup(); // Viser en popup-melding
             }
         });
     }
+    
     if (upgrade4) {
         upgrade4.addEventListener('click', () => {
             if (score >= upgrade4Cost) {
@@ -133,7 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltips();
                 upgrade4.style.display = "none"; // Hides the button
                 upgrade4.disabled = true;
-                //oppdaterer pps telling
+                //oppdaterer pvs telling
+            }
+            else {
+                showNoPizzaPopup();
             }
         });
     }
@@ -141,16 +152,36 @@ document.addEventListener("DOMContentLoaded", () => {
         upgrade5.addEventListener('click', () => {
             if (score >= upgrade5Cost) {
                 score -= upgrade5Cost;
-                clickValue += 1;
+                clickValue += 2;
                 scoreDisplay.textContent = score;
                 updateTooltips();
                 upgrade5.style.display = "none"; // Hides the button
                 upgrade5.disabled = true;
                 //oppdaterer pps telling
             }
+            else {
+                showNoPizzaPopup();
+            }
         });
     }
 
+    function showNoPizzaPopup() {
+        //popup er fra id som lager boksen til critical hit!
+        const popup = document.getElementById('noPizzaPopup');
+        //dette blokkerer cssen som fjerner popupen og gjør den synlig
+        popup.style.display = 'block';
+    
+    
+        setTimeout(() => {
+            //legger til en animasjon som blir borte om 3 sekunder
+            popup.style.animation = 'fadeInOut 2s forwards';
+    
+            setTimeout(() => {
+                popup.style.display = 'none';
+                popup.style.animation = '';
+            }, 3000);
+        }, );
+    }
     // Initialize tooltips on page load
     updateTooltips();
 
