@@ -61,6 +61,10 @@ def home():
 @app.route('/pizzaclicker')
 def pizza_clicker():
     return render_template("pizzaclicker.htm")
+
+@app.route('/tictactoe')
+def tictactoe():
+    return render_template("tictactoe.htm")
  
 if __name__ == '__main__':
     app.run(debug=True)
