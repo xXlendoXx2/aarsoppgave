@@ -33,12 +33,13 @@ section {
 }
 button {
     margin-bottom: 20px;
-    height: 30px;
+    height: 50px;
     border: none;
     border-radius: 5px;
     color: #fff;
     background-color: #000000;
     cursor: pointer;
+    font-size: 20px;
 }
 button:hover {
     transition: 0.25s;

@@ -54,7 +54,7 @@ def get_score():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
  
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template("index.htm")
  

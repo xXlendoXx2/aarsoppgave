@@ -13,13 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const upgrade3 = document.getElementById('upgrade3');
     const upgrade4 = document.getElementById('PHC1');
     const upgrade5 = document.getElementById('PHC2');
-    const PHS = document.getElementById('PHS')
+    const PHS = document.getElementById('PHS');
 
     let upgrade1Cost = 10;
     let upgrade2Cost = 50;
     let upgrade3Cost = 100;
     let upgrade4Cost = 300;
     let upgrade5Cost = 3000;
+
+    // Initially disable and gray out Cheese & Pepperoni upgrades
+    upgrade2.disabled = true;
+    upgrade2.style.opacity = "0.5";  
+    upgrade3.disabled = true;
+    upgrade3.style.opacity = "0.5";  
 
     // Clicking the pizza adds `clickValue` to score
     if (pizza && scoreDisplay) {
@@ -31,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error: Missing elements 'pizza' or 'scoreDisplay'.");
     }
 
-    // Function to save clicks to the server
     function saveClicks() {
         saveStatus.textContent = "Lagrer...";
 
@@ -51,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // Fetch and display the score on page load
     function displayScore() {
         fetch('/get_score')
             .then(response => response.json())
@@ -64,27 +68,24 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error('Error for å få lagret data:', error));
     }
 
-    // Start auto-clicking (passive income)
     function startAutoClick() {
         if (!autoClickInterval) {
             autoClickInterval = setInterval(() => {
-                score += autoClickValue; // Only passive income
+                score += autoClickValue;
                 scoreDisplay.textContent = score;
-                PHS.textContent = `(+${autoClickValue}/sek)`
-            }, 1000)  // Runs every second
+                PHS.textContent = `(+${autoClickValue}/sek)`;
+            }, 1000);
         }
     }
 
-    // Upgrade 1: Adds to auto-clicking, not manual clicking
     function updateTooltips() {
         document.getElementById('tooltip1').textContent = `Koster: ${upgrade1Cost} | Gir: +1 PHS`;
-        document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +2 PHS`;
+        document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +3 PHS`;
         document.getElementById('tooltip3').textContent = `Koster: ${upgrade3Cost} | Gir: +5 PHS`;
         document.getElementById('tooltip4').textContent = `Koster: ${upgrade4Cost} | Gir: +1 PHC`;
         document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: +2 PHC`;
-
     }
-/* Har tenkt til å legge til slik at oppgraderingene blir bedre hvis man kjøper de 10 ganger osv.*/
+
     if (upgrade1) {
         upgrade1.addEventListener('click', () => {
             if (score >= upgrade1Cost) {
@@ -92,11 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 autoClickValue += 1;
                 upgrade1Cost = Math.floor(upgrade1Cost * 1.75);
                 scoreDisplay.textContent = score;
-                updateTooltips(); // Update tooltip
+                updateTooltips();
                 startAutoClick();
-            }
-            else {
-                showNoPizzaPopup(); // Viser en popup-melding
+
+                // Unlock Cheese upgrade
+                upgrade2.disabled = false;
+                upgrade2.style.opacity = "1";
+            } else {
+                showNoPizzaPopup();
             }
         });
     }
@@ -108,11 +112,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 autoClickValue += 3;
                 upgrade2Cost = Math.floor(upgrade2Cost * 1.75);
                 scoreDisplay.textContent = score;
-                updateTooltips(); // Update tooltip
+                updateTooltips();
                 startAutoClick();
-            }
-            else {
-                showNoPizzaPopup(); // Viser en popup-melding
+
+                // Unlock Pepperoni upgrade
+                upgrade3.disabled = false;
+                upgrade3.style.opacity = "1";
+            } else {
+                showNoPizzaPopup();
             }
         });
     }
@@ -124,14 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 autoClickValue += 5;
                 upgrade3Cost = Math.floor(upgrade3Cost * 2.5);
                 scoreDisplay.textContent = score;
-                updateTooltips(); // Update tooltip
+                updateTooltips();
                 startAutoClick();
-            } else { 
-                showNoPizzaPopup(); // Viser en popup-melding
+            } else {
+                showNoPizzaPopup();
             }
         });
     }
-    
+
     if (upgrade4) {
         upgrade4.addEventListener('click', () => {
             if (score >= upgrade4Cost) {
@@ -139,15 +146,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 clickValue += 1;
                 scoreDisplay.textContent = score;
                 updateTooltips();
-                upgrade4.style.display = "none"; // Hides the button
+                upgrade4.style.display = "none";
                 upgrade4.disabled = true;
-                //oppdaterer pvs telling
-            }
-            else {
+            } else {
                 showNoPizzaPopup();
             }
         });
     }
+
     if (upgrade5) {
         upgrade5.addEventListener('click', () => {
             if (score >= upgrade5Cost) {
@@ -155,39 +161,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 clickValue += 2;
                 scoreDisplay.textContent = score;
                 updateTooltips();
-                upgrade5.style.display = "none"; // Hides the button
+                upgrade5.style.display = "none";
                 upgrade5.disabled = true;
-                //oppdaterer pps telling
-            }
-            else {
+            } else {
                 showNoPizzaPopup();
             }
         });
     }
 
     function showNoPizzaPopup() {
-        //popup er fra id som lager boksen til critical hit!
         const popup = document.getElementById('noPizzaPopup');
-        //dette blokkerer cssen som fjerner popupen og gjør den synlig
         popup.style.display = 'block';
-    
-    
+
         setTimeout(() => {
-            //legger til en animasjon som blir borte om 3 sekunder
             popup.style.animation = 'fadeInOut 2s forwards';
-    
+
             setTimeout(() => {
                 popup.style.display = 'none';
                 popup.style.animation = '';
             }, 3000);
         }, );
     }
-    // Initialize tooltips on page load
+
     updateTooltips();
-
-
     displayScore();
-
-    // Automatic saving every 10 seconds
     setInterval(saveClicks, 10000);
 });
