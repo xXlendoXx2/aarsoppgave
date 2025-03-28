@@ -8,7 +8,7 @@ body {
 
 header {
     display: flex;
-    
+
     background: #f8f9fa;
     padding: 10px 20px;
 }
@@ -82,7 +82,7 @@ aside li {
     padding: 10px;
     text-align: center;
     background: #fff;
-}   
+}
 
 .game img {
     max-width: 100%;
@@ -100,11 +100,14 @@ footer {
     bottom: 0;
     padding-left: 31rem;
 }
+
 a {
-    text-decoration: none;  /* Fjerner understrekingen */
-    color: black;           
+    text-decoration: none;
+    /* Fjerner understrekingen */
+    color: black;
 }
 
 a:hover {
-    color: darkgray;        /* Endrer farge på lenken når du holder musepekeren over den */
+    color: darkgray;
+    /* Endrer farge på lenken når du holder musepekeren over den */
 }

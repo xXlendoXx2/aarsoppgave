@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import MySQLdb
 from flask_cors import CORS
- 
+
 app = Flask(__name__)
 CORS(app)
- 
+
 # MySQL Configuration
 db_config = {
     'host': '10.2.2.202',
@@ -13,7 +13,7 @@ db_config = {
     'database': 'spillmeny_db',
     'port': 3306
 }
- 
+
 def get_db_connection():
     return MySQLdb.connect(**db_config)
  
@@ -68,3 +68,4 @@ def tictactoe():
  
 if __name__ == '__main__':
     app.run(debug=True)
+    

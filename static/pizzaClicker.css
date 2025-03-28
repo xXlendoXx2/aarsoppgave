@@ -1,7 +1,8 @@
-.buttonsrow{
+.buttonsrow {
     display: flex;
     gap: 0.25rem;
 }
+
 /* Stil for overskrifter (h2): Setter skriftstørrelse og farge */
 h2 {
     font-size: 32px;
@@ -19,22 +20,27 @@ h2 {
     position: relative;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
+
 #upgrade1 {
     background-color: red;
     color: 0;
 }
+
 #upgrade2 {
     background-color: yellow;
     color: black;
 }
+
 #upgrade3 {
     background-color: rgb(218, 8, 8);
 }
+
 .flex {
     display: flex;
     flex-direction: row;
     margin-bottom: 3%;
 }
+
 #pizza:active {
     transform: scale(0.9);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -100,6 +106,7 @@ button:hover {
     background-color: #381500;
     /* Endrer farge ved hover */
 }
+
 /* Tooltip container */
 .tooltip {
     position: absolute;
@@ -129,6 +136,7 @@ button:hover {
     transform: translateX(-50%);
     margin-top: 5px;
 }
+
 .popup {
     display: none;
     position: fixed;

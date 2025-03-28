@@ -23,9 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initially disable and gray out Cheese & Pepperoni upgrades
     upgrade2.disabled = true;
-    upgrade2.style.opacity = "0.5";  
+    upgrade2.style.opacity = "0.5";
     upgrade3.disabled = true;
-    upgrade3.style.opacity = "0.5";  
+    upgrade3.style.opacity = "0.5";
 
     // Clicking the pizza adds `clickValue` to score
     if (pizza && scoreDisplay) {
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 popup.style.display = 'none';
                 popup.style.animation = '';
             }, 3000);
-        }, );
+        },);
     }
 
     updateTooltips();
