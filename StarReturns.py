@@ -57,6 +57,14 @@ def get_score():
 @app.route('/')
 def home():
     return render_template("index.htm")
+
+@app.route('/registrer')
+def registrer():
+    return render_template("registrer.htm")
+
+@app.route('/logginn')
+def logginn():
+    return render_template("logginn.htm")
  
 @app.route('/pizzaclicker')
 def pizza_clicker():
@@ -76,4 +84,3 @@ def tictactoe_ai():
  
 if __name__ == '__main__':
     app.run(debug=True)
-    
