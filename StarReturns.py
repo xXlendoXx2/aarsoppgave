@@ -65,6 +65,14 @@ def pizza_clicker():
 @app.route('/tictactoe')
 def tictactoe():
     return render_template("tictactoe.htm")
+
+@app.route("/tictactoe_menu")
+def tictactoe_menu():
+    return render_template("tic-tac-toe-menu.htm")
+
+@app.route("/tictactoe_ai")
+def tictactoe_ai():
+    return render_template("tictactoe-ai.htm")
  
 if __name__ == '__main__':
     app.run(debug=True)
