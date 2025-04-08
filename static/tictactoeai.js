@@ -14,7 +14,7 @@ const winPatterns = [
 
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 restartBtn.addEventListener('click', restartGame);
-
+1
 
 function handleCellClick(event) {
     const index = event.target.dataset.cellIndex;
