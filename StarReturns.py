@@ -16,7 +16,7 @@ db_config = {
 
 def get_db_connection():
     return MySQLdb.connect(**db_config)
- 
+
 @app.route('/save_pizza', methods=['POST'])
 def save_pizza():
     data = request.get_json()
@@ -81,6 +81,6 @@ def tictactoe_menu():
 @app.route("/tictactoe_ai")
 def tictactoe_ai():
     return render_template("tictactoe-ai.htm")
- 
+
 if __name__ == '__main__':
     app.run(debug=True)
