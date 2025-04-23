@@ -1,24 +1,18 @@
+body {
+    overflow-y: hidden
+}
 .buttonsrow {
     display: flex;
     gap: 0.25rem;
+}
+.button-container {
+    position: sticky;
 }
 
 /* Stil for overskrifter (h2): Setter skriftstørrelse og farge */
 h2 {
     font-size: 32px;
     color: #5e3d0c;
-}
-
-#pizza {
-    width: 200px;
-    height: 200px;
-    background-color: #d2691e;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: transform 0.1s, box-shadow 0.1s;
-    position: relative;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 #upgrade1 {
@@ -37,7 +31,6 @@ h2 {
 
 .flex {
     display: flex;
-    flex-direction: row;
     margin-bottom: 3%;
 }
 
@@ -45,9 +38,9 @@ h2 {
 
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
 #pizza {
-    width: 200px;
+    width: 175px;
     /* Bredde på pizza-elementet */
-    height: 200px;
+    height: 175px;
     /* Høyde på pizza-elementet */
     background-color: #d2691e;
     /* Oransje bakgrunnsfarge */
@@ -128,6 +121,9 @@ button:hover {
 .upgrade-container {
     position: relative;
     display: inline-block;
+    margin-right: 10px;
+    flex-direction: row;
+
 }
 
 /* Show tooltip when hovering over button */
@@ -155,6 +151,17 @@ button:hover {
     /* ^--Ensure it appears above other elements */
     font-size: 24px;
 }
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 5px;
+  }
+  .container > div {
+    margin: 3px;
+    padding: 50px;
+    font-size: 30px;
+    text-align: center;
+  }
 
 /* Animation for the popup */
 @keyframes fadeInOut {
