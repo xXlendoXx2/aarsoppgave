@@ -41,10 +41,7 @@ h2 {
     margin-bottom: 3%;
 }
 
-#pizza:active {
-    transform: scale(0.9);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
+
 
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
 #pizza {
@@ -70,6 +67,12 @@ h2 {
 
 /* Effekt når pizzaen trykkes */
 #pizza:active {
+    transform: scale(0.9);
+    /* Gjør pizzaen mindre ved trykk */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Reduserer skyggen ved trykk */
+}
+.autoclick {
     transform: scale(0.9);
     /* Gjør pizzaen mindre ved trykk */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);

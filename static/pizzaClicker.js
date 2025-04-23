@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 score += autoClickValue;
                 scoreDisplay.textContent = score;
                 PHS.textContent = `(+${autoClickValue}/sek)`;
+                pizza.classList.add('autoclick');
+
+                // Fjern animasjonen etter kort tid
+                setTimeout(() => {
+                    pizza.classList.remove('autoclick');
+                }, 100);
             }, 1000);
         }
     }
