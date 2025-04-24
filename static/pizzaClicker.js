@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // variabler som definerer poeng, økning av poeng med trykk eller automatisk
     let score = 0;
-    let clickValue = 1; // Clicks stay the same
-    let autoClickValue = 0; // Only for passive income
+    let clickValue = 1; 
+    let autoClickValue = 0; 
     let autoClickInterval;
 
-    // Get HTML elements
+    // "Hente divs" fra html siden 
     const pizza = document.getElementById('pizza');
     const scoreDisplay = document.getElementById('scoreDisplay');
     const saveStatus = document.getElementById('saveStatus');
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const upgrade5 = document.getElementById('PHC2');
     const PHS = document.getElementById('PHS');
 
+    // variabler for hver knapp oppgradering og hvor mye poeng de koster
     let upgrade1Cost = 10;
     let upgrade2Cost = 50;
     let upgrade3Cost = 100;
@@ -26,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     upgrade2.style.opacity = "0.5";
     upgrade3.disabled = true;
     upgrade3.style.opacity = "0.5";
+    upgrade5.disabled = true;
+    upgrade5.style.opacity = "0.5";
 
     // Clicking the pizza adds `clickValue` to score
     if (pizza && scoreDisplay) {
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveClicks() {
         saveStatus.textContent = "Lagrer...";
-
+        setTimeout(() => saveStatus.textContent = "", 3000);
         fetch('/save_pizza', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -169,6 +173,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltips();
                 upgrade5.style.display = "none";
                 upgrade5.disabled = true;
+                
             } else {
                 showNoPizzaPopup();
             }
@@ -191,5 +196,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateTooltips();
     displayScore();
-    setInterval(saveClicks, 10000);
+    setInterval(saveClicks, 30000);
 });

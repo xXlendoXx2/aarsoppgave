@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../static/pizzaClicker.css">
 </head>
 <body>
-        <div class="display">
-            <!-- Tittel -->
-            <h2>Pizza Clicker Game</h2>
-            <!-- Viser scoren -->
-            <p>Pizzaer: <span id="scoreDisplay">0</span></p>
-            <p>PHS (Pizza hvert sekund): <span id="PHS">(+0/sek)</span></p>
+    <div class="display">
+        <a href="/"><button>Tilbake til menyen</button></a>
+        <!-- Tittel -->
+        <h2>Pizza Clicker Game</h2>
+        <!-- Viser scoren -->
+        <p>Pizzaer: <span id="scoreDisplay">0</span></p>
+        <p>PHS (Pizza hvert sekund): <span id="PHS">(+0/sek)</span></p>
+        <p id="saveStatus"></p></div>
+        <button onclick="saveClicks()">Save Clicks</button>
             <div class="container">
                 <div class="flex">
                 <img id="pizza" src="../static/img/pizza3.png" alt="Pizza">
@@ -50,12 +53,10 @@
                         <button id="PHC2">Bedre pizza ansatt (PHC)</button>
                         <div class="tooltip" id="tooltip5">Cost: 3000 | Gives: +2 PHC</div>
                     </div>
-                    <div class="flex" >
-                        <button onclick="saveClicks()">Save Clicks</button>
-                        <p id="saveStatus"></p></div>
+                <div class="flex" >
                 </div>
-                
             </div>
+                
 
             <!-- Lenke til JavaScript-koden -->
             <!-- Feedbackmelding for lagring -->
