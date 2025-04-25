@@ -1,9 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     // variabler som definerer poeng, økning av poeng med trykk eller automatisk
     let score = 0;
-    let clickValue = 1; 
-    let autoClickValue = 0; 
+    let clickValue = 1;
+    let autoClickValue = 0;
     let autoClickInterval;
+    let stamina = 100;
+    const maxStamina = 100;
+    const staminaLossPerClick = 10;
+    const staminaRegenRate = 2; // hvor mye stamina fylles hvert intervall
+    const staminaRegenInterval = 100; // millisekunder
 
     // "Hente divs" fra html siden 
     const pizza = document.getElementById('pizza');
@@ -15,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const upgrade4 = document.getElementById('PHC1');
     const upgrade5 = document.getElementById('PHC2');
     const PHS = document.getElementById('PHS');
+    const staminaBar = document.getElementById("staminaBar");
+    const tooltip5 = document.getElementById("tooltip5")
 
     // variabler for hver knapp oppgradering og hvor mye poeng de koster
     let upgrade1Cost = 10;
@@ -31,15 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     upgrade5.disabled = true;
     upgrade5.style.opacity = "0.5";
 
-    // Clicking the pizza adds `clickValue` to score
-    if (pizza && scoreDisplay) {
-        pizza.addEventListener('click', () => {
-            score += clickValue;
-            scoreDisplay.textContent = score;
-        });
-    } else {
-        console.error("Error: Missing elements 'pizza' or 'scoreDisplay'.");
-    }
 
     function saveClicks() {
         saveStatus.textContent = "Lagrer...";
@@ -84,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     pizza.classList.remove('autoclick');
                 }, 100);
-            }, 1000);
+            }, 10);
         }
     }
 
@@ -93,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +3 PHS`;
         document.getElementById('tooltip3').textContent = `Koster: ${upgrade3Cost} | Gir: +5 PHS`;
         document.getElementById('tooltip4').textContent = `Koster: ${upgrade4Cost} | Gir: +1 PHC`;
-        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: +2 PHC`;
+        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: +3 PHC`;
     }
 
     if (upgrade1) {
@@ -158,6 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltips();
                 upgrade4.style.display = "none";
                 upgrade4.disabled = true;
+                upgrade5.disabled = false;
+                upgrade5.style.opacity = "1";
+                tooltip5.style.top = "35%"
             } else {
                 showNoPizzaPopup();
             }
@@ -168,12 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
         upgrade5.addEventListener('click', () => {
             if (score >= upgrade5Cost) {
                 score -= upgrade5Cost;
-                clickValue += 2;
+                clickValue += 3;
                 scoreDisplay.textContent = score;
                 updateTooltips();
                 upgrade5.style.display = "none";
                 upgrade5.disabled = true;
-                
+
             } else {
                 showNoPizzaPopup();
             }
@@ -194,6 +195,41 @@ document.addEventListener("DOMContentLoaded", () => {
         },);
     }
 
+    
+function updateStaminaBar() {
+    staminaBar.style.width = `${stamina}%`;
+    if (stamina < 10) {
+        staminaBar.style.backgroundColor = "red";
+        clickValue = 0;
+    } else if (stamina < 70) {
+        staminaBar.style.backgroundColor = "orange";
+        clickValue = 1;
+    } else {
+        staminaBar.style.backgroundColor = "green";
+        clickValue = 1;
+    }
+}
+
+pizza.addEventListener('click', () => {
+    if (stamina >= staminaLossPerClick) {
+        score += clickValue;
+        scoreDisplay.textContent = score;
+        stamina -= staminaLossPerClick;
+        updateStaminaBar();
+    } else {
+        // valgfritt: vis beskjed om at stamina er tomt
+    }
+});
+
+// Regenerer stamina over tid
+setInterval(() => {
+    if (stamina < maxStamina) {
+        stamina = Math.min(stamina + staminaRegenRate, maxStamina);
+        updateStaminaBar();
+    }
+}, staminaRegenInterval);
+
+    updateStaminaBar(); // kjør én gang ved oppstart
     updateTooltips();
     displayScore();
     setInterval(saveClicks, 30000);

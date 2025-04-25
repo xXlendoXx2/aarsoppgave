@@ -41,13 +41,10 @@ h2 {
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
 #pizza {
     width: 175px;
-    /* Bredde på pizza-elementet */
     height: 175px;
-    /* Høyde på pizza-elementet */
     background-color: #d2691e;
-    /* Oransje bakgrunnsfarge */
     border-radius: 50%;
-    /* Gjør pizza-elementet sirkulært */
+    /* Gjør pizza-elementet mer sirkel formet */
     display: inline-block;
     /* Plasserer det som en inline-blokk */
     cursor: pointer;
@@ -110,7 +107,8 @@ button:hover {
 /* Tooltip container */
 .tooltip {
     position: absolute;
-    top: 35%; /* Rett under knappen */
+    top: 35%;
+    /* Rett under knappen */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
@@ -123,15 +121,18 @@ button:hover {
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     z-index: 10;
-    margin-top: 6px; /* Liten avstand ned fra knappen */
+    margin-top: 6px;
+    /* Liten avstand ned fra knappen */
 }
 
 #tooltip4 {
     top: 45%;
-    left: 25%;
+    left: 17.5%;
+
 }
+
 #tooltip5 {
-    top: 60%;
+    top: 55%;
 }
 
 /* Tooltip vises ved hover */
@@ -141,11 +142,27 @@ button:hover {
     margin-right: 10px;
 }
 
-.upgrade-container button:hover + .tooltip {
+.upgrade-container button:hover+.tooltip {
     visibility: visible;
     opacity: 1;
 }
 
+#staminaContainer {
+    width: 150px;
+    height: 20px;
+    background-color: #ddd;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+#staminaBar {
+    height: 100%;
+    width: 100%;
+    background-color: green;
+    transition: width 0.2s;
+}
 
 
 .popup {
@@ -166,7 +183,7 @@ button:hover {
 
 .container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto 25rem auto;
 }
 
 .container>div {
