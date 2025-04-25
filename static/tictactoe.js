@@ -60,10 +60,12 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
-            break
+            break;
         }
     }
+
     if (roundWon) {
+        alert(winningMessage()); // Show popup
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         return;
@@ -71,6 +73,7 @@ function handleResultValidation() {
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
+        alert(drawMessage()); // Show popup
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;
@@ -78,6 +81,7 @@ function handleResultValidation() {
 
     handlePlayerChange();
 }
+
 
 function handlePlayerChange() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";

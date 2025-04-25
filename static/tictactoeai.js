@@ -12,6 +12,8 @@ const winPatterns = [
     [0, 4, 8], [2, 4, 6]
 ];
 
+
+
 cells.forEach(cell => cell.addEventListener('click', handleCellClick));
 restartBtn.addEventListener('click', restartGame);
 1
@@ -111,7 +113,9 @@ function minimax(b, depth, isMaximizing) {
         }
         return bestScore;
     }
+    
 }
+
 
 function restartGame() {
     board = ['', '', '', '', '', '', '', '', ''];
