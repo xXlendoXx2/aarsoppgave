@@ -84,4 +84,4 @@ def tictactoe_ai():
     return render_template("tictactoe-ai.htm")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host= '0.0.0.0')

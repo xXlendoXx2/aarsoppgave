@@ -37,6 +37,8 @@ Den klassiske tre på rad-opplevelsen! Spill mot en venn eller utfordre deg selv
 - #### Vinn 3 tegn på rad vannrett, loddrett og på skrå
 - #### Restart spillet og prøv å vinne på nytt
 
-
+### Kreditering til ideer eller forbedringer
+- ### Armin: Stamina system som fungerer som en anti-autoclicker system
+- ### Veljko: Responsivt design for mobiler, lage host på app.run 
 
 

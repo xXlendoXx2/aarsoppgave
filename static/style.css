@@ -1,5 +1,194 @@
 body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f8f9fa;
+}
+.body {
     overflow-y: hidden
+}
+
+.body1 {
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #343a40;
+    padding: 15px 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+main {
+    display: flex;
+    margin: 20px;
+}
+
+aside {
+    width: 20%;
+    padding: 20px;
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 75%;
+    padding: 20px;
+}
+
+.game {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.game:hover {
+    transform: scale(1.05);
+}
+
+.game img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+footer {
+    background: #343a40;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: darkgray;
+}
+
+.tictactoe_box              {
+    text-align: center;
+    border-radius: 10px;
+    width: 400px;
+    margin: auto;
+    background-color: #fff;
+    margin-top: 75px;
+    box-shadow: 0px 10px 36px 16px rgba(0, 0, 0, 0.1);
+}
+
+.game--title {
+    padding-top: 20px;
+}
+
+.game--container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 150px;
+    margin: 120px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.cell {
+    font-family: "Poppins", sans-serif;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 0 0 1px #333333;
+    border: 1px solid #333333;
+    cursor: pointer;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+button {
+    margin-bottom: 20px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #000000;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button:hover {
+    transition: 0.25s;
+    transform: scale(1.05);
+
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.singleplayer {
+    background-color: blue;
+}
+.singleplayer:hover {
+    background-color: darkblue;
+}
+.twoplayer {
+    background-color: green;
+}
+.twoplayer:hover {
+    background-color: darkgreen;
 }
 
 .buttonsrow {
@@ -33,7 +222,13 @@ h2 {
 
 .flex {
     display: flex;
+    margin-top: -25%;
+    flex-direction: column;
+}
+.flex_pizza {
+    display: flex;
     margin-bottom: 3%;
+    flex-direction: row;
 }
 
 
@@ -80,36 +275,13 @@ h2 {
     color: #5e3d0c;
 }
 
-/* Stil for knapper */
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    cursor: pointer;
-    background-color: #8b4513;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-    margin-bottom: 0.4%;
-}
-
-button:hover {
-    background-color: #381500;
-}
-
-/* Hover-effekt for knapper */
-button:hover {
-    background-color: #381500;
-    /* Endrer farge ved hover */
-}
-
 
 /* Tooltip container */
 .tooltip {
     position: absolute;
-    top: 35%;
     /* Rett under knappen */
-    left: 50%;
+    top: 0%;
+    left: -9%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -126,13 +298,12 @@ button:hover {
 }
 
 #tooltip4 {
-    top: 45%;
-    left: 17.5%;
+    left: -20%;
 
 }
 
 #tooltip5 {
-    top: 55%;
+    left: -30%;
 }
 
 /* Tooltip vises ved hover */
@@ -153,7 +324,7 @@ button:hover {
     background-color: #ddd;
     border: 2px solid #8b4513;
     border-radius: 10px;
-    margin: 10px auto;
+    margin: 10px;
     overflow: hidden;
 }
 
@@ -181,12 +352,12 @@ button:hover {
     font-size: 24px;
 }
 
-.container {
+.grid_container {
     display: grid;
     grid-template-columns: auto 25rem auto;
 }
 
-.container>div {
+.grid_container>div {
     padding: 50px;
     font-size: 30px;
     text-align: center;

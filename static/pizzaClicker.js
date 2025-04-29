@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxStamina = 100;
     const staminaLossPerClick = 10;
     const staminaRegenRate = 2; // hvor mye stamina fylles hvert intervall
-    const staminaRegenInterval = 100; // millisekunder
+    const staminaRegenInterval = 30; // millisekunder
 
     // "Hente divs" fra html siden 
     const pizza = document.getElementById('pizza');
@@ -20,8 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const upgrade4 = document.getElementById('PHC1');
     const upgrade5 = document.getElementById('PHC2');
     const PHS = document.getElementById('PHS');
-    const staminaBar = document.getElementById("staminaBar");
-    const tooltip5 = document.getElementById("tooltip5")
 
     // variabler for hver knapp oppgradering og hvor mye poeng de koster
     let upgrade1Cost = 10;
@@ -82,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     pizza.classList.remove('autoclick');
                 }, 100);
-            }, 10);
+            }, 1000);
         }
     }
 
@@ -158,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 upgrade4.disabled = true;
                 upgrade5.disabled = false;
                 upgrade5.style.opacity = "1";
-                tooltip5.style.top = "35%"
             } else {
                 showNoPizzaPopup();
             }
@@ -174,7 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTooltips();
                 upgrade5.style.display = "none";
                 upgrade5.disabled = true;
-
             } else {
                 showNoPizzaPopup();
             }
