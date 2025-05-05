@@ -82,6 +82,9 @@ def tictactoe_menu():
 @app.route("/tictactoe_ai")
 def tictactoe_ai():
     return render_template("tictactoe-ai.htm")
+@app.route("/designprofil")
+def designprofil():
+    return render_template("designprofil.htm")
 
 if __name__ == '__main__':
     app.run(debug=True, host= '0.0.0.0')

@@ -39,6 +39,8 @@ Den klassiske tre på rad-opplevelsen! Spill mot en venn eller utfordre deg selv
 
 ### Kreditering til ideer eller forbedringer
 - ### Armin: Stamina system som fungerer som en anti-autoclicker system
-- ### Veljko: Responsivt design for mobiler, lage host på app.run 
+- ### Veljko: Responsivt design for mobiler, lage host på app.run
 
 
+
+                
