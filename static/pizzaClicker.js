@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // variabler som definerer poeng, økning av poeng med trykk eller automatisk
-    let score = 9300;
+    let score = 200000;
     let clickValue = 1;
     let autoClickValue = 0;
     let autoClickInterval;
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const PHS = document.getElementById('PHS');
     const PHC = document.getElementById("PHC")
     const tooltip4 = document.getElementById("tooltip4")
-    const flex_phc = document.getElementById("flex_phc")
+    const tooltip5 = document.getElementById("tooltip5")
     // variabler for hver knapp oppgradering og hvor mye poeng de koster
     let upgrade1Cost = 10;
     let upgrade2Cost = 50;
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +3 PHS`;
         document.getElementById('tooltip3').textContent = `Koster: ${upgrade3Cost} | Gir: +5 PHS`;
         document.getElementById('tooltip4').textContent = `Koster: ${upgrade4Cost} | Gir: +1 PHC`;
-        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: +3 PHC`;
+        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: ${clickValue } PHC`;
         document.getElementById("level1").textContent = `level: ${upgrade1Count}`
         document.getElementById("level2").textContent = `level: ${upgrade2Count}`
         document.getElementById("level3").textContent = `level: ${upgrade3Count}`
@@ -184,9 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
             upgrade5.addEventListener('click', () => {
                 if (score >= upgrade5Cost) {
                     score -= upgrade5Cost;
-                    clickValue += 3;
+                    clickValue = Math.floor(clickValue * 2);
                     upgrade5Count ++;
-                    upgrade5Cost = Math.floor(upgrade5Cost * 1.5);
+                    upgrade5Cost = Math.floor(upgrade5Cost * 2);
+                    tooltip5.textContent = `Koster: ${upgrade5Cost} | Gir: +${clickValue} PHC`;
                     scoreDisplay.textContent = `Pizzaer:${score}`;
                     PHC.textContent = `(+${clickValue}/click)`
                     updateTooltips();
