@@ -32,7 +32,7 @@ def create_tables():
         CREATE TABLE IF NOT EXISTS pizza_save (
             id INT AUTO_INCREMENT PRIMARY KEY,
             score INT NOT NULL,
-            bruker_id INT
+            bruker_id INT UNIQUE
         )
     """)
 
@@ -44,9 +44,27 @@ def create_tables():
         )
     """)
 
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS pizza_upgrades (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            bruker_id INT UNIQUE,
+            click_value INT NOT NULL,
+            auto_click_value INT NOT NULL,
+            upgrade1_count INT NOT NULL,
+            upgrade2_count INT NOT NULL,
+            upgrade3_count INT NOT NULL,
+            upgrade5_count INT NOT NULL,
+            upgrade1_cost INT NOT NULL,
+            upgrade2_cost INT NOT NULL,
+            upgrade3_cost INT NOT NULL,
+            upgrade5_cost INT NOT NULL
+        )
+    """)
+
     conn.commit()
     cursor.close()
     conn.close()
+
 
 # Kjør ved oppstart
 create_tables()
@@ -76,10 +94,16 @@ def registrer():
             query = "INSERT INTO brukere (navn, email, passord) VALUES (%s, %s, %s)"
             cursor.execute(query, (navn, email, hashed_password))
             conn.commit()
+
+            # Logg inn brukeren automatisk
+            session['bruker_id'] = cursor.lastrowid
+            session['navn'] = navn
+
             cursor.close()
             conn.close()
-            flash("Bruker registrert!", "success")
-            return redirect(url_for('logginn'))
+
+            flash(f"Velkommen, {navn}!", "success")
+            return redirect(url_for('home'))
         except mysql.connector.Error as err:
             flash(f"Databasefeil: {err}", "error")
             return redirect(url_for('registrer'))
@@ -119,8 +143,11 @@ def loggut():
     flash("Du er logget ut", "success")
     return redirect(url_for('logginn'))
 
+
 @app.route('/save_pizza', methods=['POST'])
 def save_pizza():
+    print("Save pizza score called!")  # DEBUG
+
     if 'bruker_id' not in session:
         return jsonify({"error": "Ikke logget inn"}), 403
 
@@ -134,22 +161,24 @@ def save_pizza():
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        # Sjekk om samme score allerede er lagret for denne brukeren
-        cursor.execute('SELECT id FROM pizza_save WHERE score = %s AND bruker_id = %s', (score, session['bruker_id']))
-        if cursor.fetchone():
-            cursor.close()
-            conn.close()
-            return jsonify({"success": False, "message": "Denne scoren er allerede lagret."}), 200
+        # Sjekk om det allerede finnes en score for brukeren
+        cursor.execute('SELECT id FROM pizza_save WHERE bruker_id = %s', (session['bruker_id'],))
+        existing = cursor.fetchone()
 
-        # Hvis ikke, lagre ny score
-        cursor.execute('INSERT INTO pizza_save (score, bruker_id) VALUES (%s, %s)', (score, session['bruker_id']))
+        if existing:
+            # Oppdater eksisterende rad
+            cursor.execute('UPDATE pizza_save SET score = %s WHERE bruker_id = %s', (score, session['bruker_id']))
+        else:
+            # Sett inn ny rad
+            cursor.execute('INSERT INTO pizza_save (score, bruker_id) VALUES (%s, %s)', (score, session['bruker_id']))
+
         conn.commit()
         cursor.close()
         conn.close()
         return jsonify({"success": True}), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 @app.route('/get_score', methods=['GET'])
 def get_score():
@@ -159,15 +188,81 @@ def get_score():
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        # Hent høyeste score for innlogget bruker
-        cursor.execute('SELECT MAX(score) FROM pizza_save WHERE bruker_id = %s', (session['bruker_id'],))
+        # Hent score for innlogget bruker
+        cursor.execute('SELECT score FROM pizza_save WHERE bruker_id = %s', (session['bruker_id'],))
         row = cursor.fetchone()
-        score = row[0] if row and row[0] is not None else 0
+        score = row[0] if row else 0
         cursor.close()
         conn.close()
         return jsonify({"score": score}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+    
+@app.route('/save_upgrades', methods=['POST'])
+def save_upgrades():
+    if 'bruker_id' not in session:
+        return jsonify({"error": "Ikke logget inn"}), 403
+
+    data = request.get_json()
+    bruker_id = session['bruker_id']
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        # Slett gammel rad hvis den finnes
+        cursor.execute("DELETE FROM pizza_upgrades WHERE bruker_id = %s", (bruker_id,))
+
+        # Sett inn nye verdier
+        cursor.execute("""
+            INSERT INTO pizza_upgrades (
+                bruker_id, click_value, auto_click_value,
+                upgrade1_count, upgrade2_count, upgrade3_count, upgrade5_count,
+                upgrade1_cost, upgrade2_cost, upgrade3_cost, upgrade5_cost
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            bruker_id,
+            data['clickValue'],
+            data['autoClickValue'],
+            data['upgrade1Count'],
+            data['upgrade2Count'],
+            data['upgrade3Count'],
+            data['upgrade5Count'],
+            data['upgrade1Cost'],
+            data['upgrade2Cost'],
+            data['upgrade3Cost'],
+            data['upgrade5Cost']
+        ))
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/get_upgrades', methods=['GET'])
+def get_upgrades():
+    if 'bruker_id' not in session:
+        return jsonify({"error": "Ikke logget inn"}), 403
+
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute("SELECT * FROM pizza_upgrades WHERE bruker_id = %s", (session['bruker_id'],))
+        data = cursor.fetchone()
+        cursor.close()
+        conn.close()
+
+        if data:
+            return jsonify(data)
+        else:
+            return jsonify({})  # Ingen lagret data ennå
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 
 @app.route('/pizzaclicker')

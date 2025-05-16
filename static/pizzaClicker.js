@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     // variabler som definerer poeng, økning av poeng med trykk eller automatisk
-    let score = 200000;
+    let score = 1;
     let clickValue = 1;
     let autoClickValue = 0;
     let autoClickInterval;
@@ -91,13 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
         }
     }
+    
 
     function updateTooltips() {
         document.getElementById('tooltip1').textContent = `Koster: ${upgrade1Cost} | Gir: +1 PHS`;
         document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +3 PHS`;
         document.getElementById('tooltip3').textContent = `Koster: ${upgrade3Cost} | Gir: +5 PHS`;
         document.getElementById('tooltip4').textContent = `Koster: ${upgrade4Cost} | Gir: +1 PHC`;
-        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: ${clickValue } PHC`;
+        document.getElementById('tooltip5').textContent = `Koster: ${upgrade5Cost} | Gir: ${clickValue} PHC`;
         document.getElementById("level1").textContent = `level: ${upgrade1Count}`
         document.getElementById("level2").textContent = `level: ${upgrade2Count}`
         document.getElementById("level3").textContent = `level: ${upgrade3Count}`
@@ -106,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    if (upgrade1) {
+    if (upgrade1) { 
         upgrade1.addEventListener('click', () => {
             if (score >= upgrade1Cost) {
                 score -= upgrade1Cost;
@@ -242,9 +243,61 @@ setInterval(() => {
         updateStaminaBar();
     }
 }, staminaRegenInterval);
+function fetchUpgrades() {
+    fetch('/get_upgrades')
+        .then(response => response.json())
+        .then(data => {
+            if (Object.keys(data).length > 0) {
+                clickValue = data.click_value;
+                autoClickValue = data.auto_click_value;
+                upgrade1Count = data.upgrade1_count;
+                upgrade2Count = data.upgrade2_count;
+                upgrade3Count = data.upgrade3_count;
+                upgrade5Count = data.upgrade5_count;
+                upgrade1Cost = data.upgrade1_cost;
+                upgrade2Cost = data.upgrade2_cost;
+                upgrade3Cost = data.upgrade3_cost;
+                upgrade5Cost = data.upgrade5_cost;
+                updateTooltips();
+                PHC.textContent = `(+${clickValue}/click)`
+                PHS.textContent = `(+${autoClickValue}/sek)`
+                if (autoClickValue > 0) startAutoClick();
+            }
+        })
+        .catch(error => console.error('Feil ved henting av upgrades:', error));
+}
+function saveUpgrades() {
+    const data = {
+        clickValue,
+        autoClickValue,
+        upgrade1Count,
+        upgrade2Count,
+        upgrade3Count,
+        upgrade5Count,
+        upgrade1Cost,
+        upgrade2Cost,
+        upgrade3Cost,
+        upgrade5Cost
+    };
+
+    fetch('/save_upgrades', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+      .then(res => {
+          if (!res.success) console.error("Feil ved lagring av upgrades:", res);
+      });
+}
+
+
 
     updateStaminaBar(); // kjør én gang ved oppstart
     updateTooltips();
     displayScore();
-    setInterval(saveClicks, 30000);
+    fetchUpgrades();
+    setInterval(() => {
+        saveClicks();
+        saveUpgrades();
+    }, 10000);
 });
