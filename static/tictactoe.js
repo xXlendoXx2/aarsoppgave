@@ -71,13 +71,7 @@ function handleResultValidation() {
         return;
     }
 
-    let roundDraw = !gameState.includes("");
-    if (roundDraw) {
-        alert(drawMessage()); // Show popup
-        statusDisplay.innerHTML = drawMessage();
-        gameActive = false;
-        return;
-    }
+   
 
     handlePlayerChange();
 }
