@@ -39,7 +39,17 @@ function handleCellClick(event) {
 }
 
 function aiMove() {
-    const bestMove = getBestMove(board);
+    let bestMove;
+    // 70% chance to make the best move, 30% to make a random move
+    if (Math.random() < 0.7) {
+        bestMove = getBestMove(board);
+    } else {
+        const emptyCells = board
+            .map((cell, index) => cell === '' ? index : null)
+            .filter(index => index !== null);
+        bestMove = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+    }
+
     if (bestMove !== -1) {
         board[bestMove] = ai;
         cells[bestMove].textContent = ai;
@@ -54,6 +64,7 @@ function aiMove() {
         updateStatus('Draw!');
     }
 }
+
 
 function checkWinner(b) {
     for (const pattern of winPatterns) {

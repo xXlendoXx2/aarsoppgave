@@ -11,7 +11,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
 }
-
+ 
 /* Responsive mobile layout */
 @media screen and (max-width: 600px) {
     .grid_container {
@@ -27,12 +27,12 @@ body {
     .flex_pizza {
         flex-direction: column !important;
     }
-
+ 
     .tooltip {
         top: auto !important;          /* Reset top */
         bottom: -15% !important;                 /* Move it under the button */
         left: 105% !important;
-        margin-top: 0.5rem;   
+        margin-top: 0.5rem;  
     }
     #level1 {
         top: auto !important;          /* Reset top */
@@ -62,7 +62,7 @@ body {
         top: auto !important;          /* Reset top */
         bottom: -45% !important;                 /* Move it under the button */
         left: 50% !important;    }
-
+ 
     .flex {
         height: 100%;
         display: flex;
@@ -78,22 +78,22 @@ body {
         gap: 2rem;
         margin-top: 0.5rem !important;
     }
-
+ 
     .flex:nth-of-type(2) {
         grid-area: left;
     }
-
+ 
     .flex_phc:nth-of-type(3) {
         grid-area: right;
     }
-    
+   
 }
-  
+ 
  
 .body1 {
     overflow-x: hidden;
 }
-
+ 
 header {
     display: flex;
     justify-content: space-between;
@@ -102,37 +102,37 @@ header {
     padding: 15px 20px;
     color: white;
 }
-
+ 
 .logo {
     font-size: 24px;
     font-weight: bold;
 }
-
+ 
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
     gap: 15px;
 }
-
+ 
 nav a {
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: bold;
 }
-
+ 
 main {
     display: flex;
     margin: 20px;
 }
-
+ 
 aside {
     width: 20%;
     padding: 20px;
     background: #f1f1f1;
     border-radius: 10px;
 }
-
+ 
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -140,7 +140,7 @@ aside {
     width: 75%;
     padding: 20px;
 }
-
+ 
 .game {
     border: 1px solid #ddd;
     padding: 15px;
@@ -149,17 +149,17 @@ aside {
     border-radius: 10px;
     transition: transform 0.3s;
 }
-
+ 
 .game:hover {
     transform: scale(1.05);
 }
-
+ 
 .game img {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
 }
-
+ 
 footer {
     background: #343a40;
     padding: 10px;
@@ -169,16 +169,16 @@ footer {
     bottom: 0;
     width: 100%;
 }
-
+ 
 a {
     text-decoration: none;
     color: black;
 }
-
+ 
 a:hover {
     color: darkgray;
 }
-
+ 
 .tictactoe_box              {
     text-align: center;
     border-radius: 10px;
@@ -188,11 +188,11 @@ a:hover {
     margin-top: 75px;
     box-shadow: 0px 10px 36px 16px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .game--title {
     padding-top: 20px;
 }
-
+ 
 .game--container {
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -201,7 +201,7 @@ a:hover {
     margin-bottom: 10px;
     margin-top: 10px;
 }
-
+ 
 .cell {
     font-family: "Poppins", sans-serif;
     width: 50px;
@@ -212,7 +212,7 @@ a:hover {
     line-height: 50px;
     font-size: 20px;
 }
-
+ 
 button {
     margin-bottom: 20px;
     height: 50px;
@@ -223,13 +223,13 @@ button {
     cursor: pointer;
     font-size: 20px;
 }
-
+ 
 button:hover {
     transition: 0.25s;
     transform: scale(1.05);
-
+ 
 }
-
+ 
 .container {
     display: flex;
     flex-direction: column;
@@ -238,7 +238,7 @@ button:hover {
     height: 100vh;
     background-color: #fff;
 }
-
+ 
 .singleplayer {
     background-color: blue;
 }
@@ -251,36 +251,36 @@ button:hover {
 .twoplayer:hover {
     background-color: darkgreen;
 }
-
+ 
 .buttonsrow {
     display: flex;
     gap: 0.25rem;
 }
-
+ 
 .button-container {
     position: sticky;
 }
-
+ 
 /* Stil for overskrifter (h2): Setter skriftstørrelse og farge */
 #TittelPizza {
     font-size: 32px;
     color: #5e3d0c;
 }
-
+ 
 #upgrade1 {
     background-color: red;
     color: 0;
 }
-
+ 
 #upgrade2 {
     background-color: yellow;
     color: black;
 }
-
+ 
 #upgrade3 {
     background-color: rgb(218, 8, 8);
 }
-
+ 
 .flex {
     display: flex;
     margin-top: -25%;
@@ -296,9 +296,9 @@ button:hover {
     margin-bottom: 3%;
     flex-direction: row;
 }
-
-
-
+ 
+ 
+ 
 /* Stil for pizza-elementet: Definerer størrelse, form og interaksjoner */
 #pizza {
     width: 175px;
@@ -314,10 +314,13 @@ button:hover {
     /* Myk overgang for skygge og skalering */
     position: relative;
     /* Gjør det mulig å plassere sjokoladeknapper absolutt */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    /* Legger til skyggeeffekt */
-}
-
+    outline: none;
+    box-shadow: none;
+    pointer-events: auto;
+    user-select: none;
+    }
+ 
+ 
 /* Effekt når pizzaen trykkes */
 #pizza:active {
     transform: scale(0.9);
@@ -325,14 +328,14 @@ button:hover {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     /* Reduserer skyggen ved trykk */
 }
-
+ 
 .autoclick {
     transform: scale(0.9);
     /* Gjør pizzaen mindre ved trykk */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     /* Reduserer skyggen ved trykk */
 }
-
+ 
 /* Stil for score-display */
 #scoreDisplay {
     font-size: 28px;
@@ -340,8 +343,8 @@ button:hover {
     margin: 20px 0;
     color: #5e3d0c;
 }
-
-
+ 
+ 
 /* Tooltip container */
 .tooltip {
     position: absolute;
@@ -359,14 +362,14 @@ button:hover {
     margin-top: 0.5vw;
     /* Liten avstand ned fra knappen */
 }
-
+ 
 #tooltip4 {
     left: -7.5%;
 }
 #tooltip5 {
     left: -20%;
 }
-
+ 
 #level1 {
     left: 76.5%;
 }
@@ -381,19 +384,19 @@ button:hover {
     bottom: -20%;
     left: 50%;
 }
-
-
+ 
+ 
 .upgrade-container {
     position: relative;
     display: inline-block;
     margin-right: 10px;
 }
-
+ 
 .upgrade-container button:hover+.tooltip {
     visibility: visible;
     opacity: 1;
 }
-
+ 
 #staminaContainer {
     width: 150px;
     height: 20px;
@@ -403,15 +406,15 @@ button:hover {
     margin: 10px;
     overflow: hidden;
 }
-
+ 
 #staminaBar {
     height: 100%;
     width: 100%;
     background-color: green;
     transition: width 0.2s;
 }
-
-
+ 
+ 
 .popup {
     display: none;
     position: absolute;
@@ -426,12 +429,12 @@ button:hover {
     /* ^--Ensure it appears above other elements */
     font-size: 24px;
 }
-
+ 
 .grid_container {
     display: grid;
     grid-template-columns: auto 25rem auto;
 }
-
+ 
 .grid_container>div {
     padding: 50px;
     font-size: 24px;
@@ -498,15 +501,64 @@ button:hover {
     margin-top: 0.5rem;
 }
 
+.fontFarge5 {
+    width: rem;
+    height: 4rem;
+    background-color: blue;
+    color: #fff;
+    box-shadow: 2px 2px 5px Gray;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+.fontFarge6 {
+    width: rem;
+    height: 4rem;
+    background-color: darkgreen;
+    color: #fff;
+    box-shadow: 2px 2px 5px Gray;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+} 
+.fontFarge7 {
+    width: rem;
+    height: 4rem;
+    background-color: green;
+    color: #fff;
+    box-shadow: 2px 2px 5px Gray;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+.fontFarge8 {
+    width: rem;
+    height: 4rem;
+    background-color: yellow;
+    color: #fff;
+    box-shadow: 2px 2px 5px Gray;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
 /* Animation for the popup */
 @keyframes fadeInOut {
-
+ 
     0%,
     100% {
         opacity: 0;
     }
-
+ 
     50% {
         opacity: 1;
     }
 }
+ 
