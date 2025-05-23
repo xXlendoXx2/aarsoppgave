@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const staminaLossPerClick = 7.5;
     const staminaRegenRate = 1.5; // hvor mye stamina fylles hvert intervall
     const staminaRegenInterval = 100; // millisekunder
-
-    // "Hente divs" fra html siden 
+ 
+    // "Hente divs" fra html siden
     const pizza = document.getElementById('pizza');
     const scoreDisplay = document.getElementById('scoreDisplay');
     const saveStatus = document.getElementById('saveStatus');
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let upgrade2Count = 0;
     let upgrade3Count = 0;
     let upgrade5Count = 0;
-
-
+ 
+ 
     // Initially disable and gray out Cheese & Pepperoni upgrades
     upgrade2.disabled = true;
     upgrade2.style.opacity = "0.5";
@@ -43,8 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
     upgrade3.style.opacity = "0.5";
     upgrade5.disabled = true;
     upgrade5.style.opacity = "0.5";
-
-
+ 
+ 
     function saveClicks() {
         saveStatus.textContent = "Lagrer...";
         setTimeout(() => saveStatus.textContent = "", 3000);
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 saveStatus.textContent = "Feilet med å lagre dataen din!";
             });
     }
-
+ 
     function displayScore() {
         fetch('/get_score')
             .then(response => response.json())
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => console.error('Error for å få lagret data:', error));
     }
-
+ 
     function startAutoClick() {
         if (!autoClickInterval) {
             autoClickInterval = setInterval(() => {
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 scoreDisplay.textContent = `Pizzaer:${score}`;
                 PHS.textContent = `(+${autoClickValue}/sek)`;
                 pizza.classList.add('autoclick');
-
+ 
                 // Fjern animasjonen etter kort tid
                 setTimeout(() => {
                     pizza.classList.remove('autoclick');
@@ -91,8 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
         }
     }
-    
-
+   
+ 
     function updateTooltips() {
         document.getElementById('tooltip1').textContent = `Koster: ${upgrade1Cost} | Gir: +1 PHS`;
         document.getElementById('tooltip2').textContent = `Koster: ${upgrade2Cost} | Gir: +3 PHS`;
@@ -103,11 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("level2").textContent = `level: ${upgrade2Count}`
         document.getElementById("level3").textContent = `level: ${upgrade3Count}`
         document.getElementById("level5").textContent = `level: ${upgrade5Count}`
-
-
+ 
+ 
     }
-
-    if (upgrade1) { 
+ 
+    if (upgrade1) {
         upgrade1.addEventListener('click', () => {
             if (score >= upgrade1Cost) {
                 score -= upgrade1Cost;
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 scoreDisplay.textContent = `Pizzaer:${score}`;
                 updateTooltips();
                 startAutoClick();
-
+ 
                 // Unlock Cheese upgrade
                 upgrade2.disabled = false;
                 upgrade2.style.opacity = "1";
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+ 
     if (upgrade2) {
         upgrade2.addEventListener('click', () => {
             if (score >= upgrade2Cost) {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 scoreDisplay.textContent = `Pizzaer:${score}`;
                 updateTooltips();
                 startAutoClick();
-
+ 
                 // Unlock Pepperoni upgrade
                 upgrade3.disabled = false;
                 upgrade3.style.opacity = "1";
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+ 
     if (upgrade3) {
         upgrade3.addEventListener('click', () => {
             if (score >= upgrade3Cost) {
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+ 
     if (upgrade4) {
         upgrade4.addEventListener('click', () => {
             if (score >= upgrade4Cost) {
@@ -200,18 +200,18 @@ document.addEventListener("DOMContentLoaded", () => {
     function showNoPizzaPopup() {
         const popup = document.getElementById('noPizzaPopup');
         popup.style.display = 'block';
-
+ 
         setTimeout(() => {
             popup.style.animation = 'fadeInOut 4s forwards';
-
+ 
             setTimeout(() => {
                 popup.style.display = 'none';
                 popup.style.animation = '';
             }, 6000);
         },);
     }
-
-    
+ 
+   
 function updateStaminaBar() {
     staminaBar.style.width = `${stamina}%`;
     if (stamina < 10) {
@@ -223,10 +223,10 @@ function updateStaminaBar() {
     } else {
         staminaBar.style.backgroundColor = "green";
         canClick = true;
-
+ 
     }
 }
-
+ 
 pizza.addEventListener('click', () => {
     if (canClick && stamina >= staminaLossPerClick) {
         score += clickValue;
@@ -235,7 +235,7 @@ pizza.addEventListener('click', () => {
         updateStaminaBar();
     }
 });
-
+ 
 // Regenerer stamina over tid
 setInterval(() => {
     if (stamina < maxStamina) {
@@ -279,7 +279,7 @@ function saveUpgrades() {
         upgrade3Cost,
         upgrade5Cost
     };
-
+ 
     fetch('/save_upgrades', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -289,9 +289,9 @@ function saveUpgrades() {
           if (!res.success) console.error("Feil ved lagring av upgrades:", res);
       });
 }
-
-
-
+ 
+ 
+ 
     updateStaminaBar(); // kjør én gang ved oppstart
     updateTooltips();
     displayScore();
